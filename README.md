@@ -27,4 +27,4 @@ xcodegen generate && open ReactCheck.xcodeproj
 
 ## Licence
 
-MIT. Free forever; donations via GitHub Sponsors never unlock features or change matching.
+MIT. Free today, with no plans to change that. Optional donations via GitHub Sponsors never unlock features or change how matching works.
