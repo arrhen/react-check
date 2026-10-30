@@ -14,10 +14,9 @@ struct AboutView: View {
                     Text("Your photos are read on this device. React Check looks for the allergens you set, their common alternative names, and \"may contain\" warnings in several languages. Nothing leaves your phone.")
                 }
                 Section("Free and open source") {
-                    Link("Support React Check", destination: URL(string: "https://arrhen.me/react-check/support")!)
+                    Link("Help and support", destination: URL(string: "https://arrhen.me/react-check/support")!)
                     Link("Privacy", destination: URL(string: "https://arrhen.me/react-check/privacy")!)
                     Link("Source code (MIT licence)", destination: URL(string: "https://github.com/arrhen/react-check")!)
-                    Text("Donations never unlock features or change how matching works.").font(.footnote).foregroundStyle(.secondary)
                 }
                 Section {
                     Text("React Check is an aid, not a substitute for reading the label. It is not medical advice and comes with no warranty.")
