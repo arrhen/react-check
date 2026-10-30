@@ -4,6 +4,7 @@ import SwiftUI
 struct ProfilesView: View {
     @Environment(ProfileStore.self) private var store
     @State private var editing: Profile?
+    @State private var pendingDelete: Profile?
 
     var body: some View {
         NavigationStack {
@@ -24,13 +25,23 @@ struct ProfilesView: View {
                         }
                     }
                     .foregroundStyle(.primary)
+                    .swipeActions {
+                        Button("Delete", role: .destructive) { pendingDelete = profile }
+                    }
                 }
-                .onDelete(perform: store.delete)
             }
             .navigationTitle("People")
             .toolbar {
                 Button { editing = Profile(name: "", entries: []) } label: { Label("Add person", systemImage: "plus") }
             }
+            .confirmationDialog(
+                "Delete \(pendingDelete?.name ?? "this person")?", isPresented: Binding(
+                    get: { pendingDelete != nil }, set: { if !$0 { pendingDelete = nil } }),
+                titleVisibility: .visible
+            ) {
+                Button("Delete", role: .destructive) { if let p = pendingDelete { store.delete(p) }; pendingDelete = nil }
+                Button("Cancel", role: .cancel) { pendingDelete = nil }
+            } message: { Text("Their allergies will be removed from this device.") }
             .sheet(item: $editing) { profile in
                 EditProfileView(profile: profile) { store.upsert($0) }
             }

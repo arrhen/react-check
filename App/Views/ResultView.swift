@@ -50,15 +50,15 @@ struct Look {
 
     static func of(_ level: AlertLevel) -> Look {
         switch level {
-        case .critical: Look(symbol: "exclamationmark.octagon.fill", color: .red)
+        case .critical: Look(symbol: "exclamationmark.octagon.fill", color: Color(red: 0.78, green: 0.08, blue: 0.10))
         case .warning: Look(symbol: "exclamationmark.triangle.fill", color: .orange, onColor: .black)
         case .caution: Look(symbol: "exclamationmark.circle.fill", color: .yellow, onColor: .black)
-        case .notice: Look(symbol: "info.circle.fill", color: .blue)
+        case .notice: Look(symbol: "info.circle.fill", color: Color(red: 0.0, green: 0.33, blue: 0.72))
         }
     }
-    static let cannotVerify = Look(symbol: "questionmark.diamond.fill", color: .purple)
+    static let cannotVerify = Look(symbol: "questionmark.diamond.fill", color: Color(red: 0.42, green: 0.18, blue: 0.69))
     /// Deliberately neutral: this must never look like an all-clear.
-    static let noMatches = Look(symbol: "doc.text.magnifyingglass", color: .gray)
+    static let noMatches = Look(symbol: "doc.text.magnifyingglass", color: Color(red: 0.33, green: 0.36, blue: 0.40))
 }
 
 struct ProfileCard: View {
@@ -74,7 +74,7 @@ struct ProfileCard: View {
                 if result.mayBeMore {
                     Label("This scan wasn't clear, so there may be more matches than shown for \(name).",
                           systemImage: "questionmark.diamond.fill")
-                        .font(.callout.bold()).foregroundStyle(.purple)
+                        .font(.callout.bold()).foregroundStyle(Color(red: 0.42, green: 0.18, blue: 0.69))
                 }
             }
         case .cannotVerify:

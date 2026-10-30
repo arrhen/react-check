@@ -1,3 +1,4 @@
+import AVFoundation
 import PhotosUI
 import ReactCheckCore
 import SwiftUI
@@ -56,6 +57,11 @@ struct ScanView: View {
                         Button { showCamera = true } label: { Label("Scan with camera", systemImage: "camera.viewfinder") }
                     } else if DocumentScanner.isSupported {
                         Button { showDocumentScanner = true } label: { Label("Scan with camera", systemImage: "camera.viewfinder") }
+                    }
+                    if AVCaptureDevice.authorizationStatus(for: .video) == .denied {
+                        Button {
+                            if let url = URL(string: UIApplication.openSettingsURLString) { UIApplication.shared.open(url) }
+                        } label: { Label("Camera is off. Open Settings to allow it.", systemImage: "gearshape") }
                     }
                     PhotosPicker(selection: $pickerItems, maxSelectionCount: 8, matching: .images) {
                         Label("Choose photos", systemImage: "photo.on.rectangle")

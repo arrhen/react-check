@@ -7,6 +7,9 @@ struct AboutView: View {
                 Section("What React Check does not do") {
                     ForEach(limitations, id: \.self) { Text($0) }
                 }
+                Section("Where the allergen lists come from") {
+                    Text("The lists cover the US FDA major food allergens and the EU's 14 allergens, plus coconut, corn, buckwheat, lactose and any word you add yourself. Ingredient names and \"may contain\" phrases were compiled from public labelling rules and common usage, so they may be incomplete. They have not been reviewed by a doctor or allergist.")
+                }
                 Section("How it works") {
                     Text("Your photos are read on this device. React Check looks for the allergens you set, their common alternative names, and \"may contain\" warnings in several languages. Nothing leaves your phone.")
                 }

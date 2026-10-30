@@ -5,6 +5,8 @@
 **Category:** Health & Fitness (secondary: Food & Drink)
 **Age rating:** 4+ (no objectionable content)
 **Price:** Free, no in-app purchases
+**Devices:** iPhone only (v1)
+**Screenshots:** `docs/screenshots/` (1320x2868, 6.9-inch, no alpha)
 
 ## Promotional text
 Add the people you cook for and what they react to. Photograph an ingredients list and React Check flags matches by name. An aid, never a replacement for reading the label.

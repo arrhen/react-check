@@ -45,6 +45,11 @@ final class ProfileStore {
         save()
     }
 
+    func delete(_ profile: Profile) {
+        profiles.removeAll { $0.id == profile.id }
+        save()
+    }
+
     func delete(at offsets: IndexSet) {
         profiles.remove(atOffsets: offsets)
         save()
