@@ -1,0 +1,1671 @@
+{
+ "version": 1,
+ "_legend": "Default term = substring match. '=' prefix = whole word (plural allowed). '!' prefix = no fuzzy matching. Non-English terms are a first draft and need native-speaker review.",
+ "allergens": [
+  {
+   "id": "milk",
+   "name": "Milk (dairy)",
+   "exclusions": [
+    "cocoa butter",
+    "cacao butter",
+    "shea butter",
+    "nut butter",
+    "peanut butter",
+    "almond butter",
+    "cashew butter",
+    "sunflower butter",
+    "butter bean",
+    "butter beans",
+    "butternut",
+    "cream of tartar",
+    "coconut milk",
+    "coconut cream",
+    "almond milk",
+    "oat milk",
+    "soy milk",
+    "soya milk",
+    "rice milk",
+    "hemp milk",
+    "cashew milk",
+    "pea milk",
+    "beurre de cacao",
+    "beurre de karite",
+    "manteca de cacao",
+    "kakaobutter",
+    "mantequilla de cacao"
+   ],
+   "direct": {
+    "en": [
+     "milk",
+     "dairy",
+     "=cream",
+     "=creamer",
+     "!butter",
+     "buttermilk",
+     "cheese",
+     "yogurt",
+     "yoghurt",
+     "kefir",
+     "=ghee",
+     "=curd",
+     "=curds",
+     "=paneer",
+     "=skyr",
+     "parmesan",
+     "mozzarella",
+     "cheddar",
+     "ricotta",
+     "mascarpone",
+     "=feta",
+     "gouda",
+     "=brie",
+     "milk solids",
+     "=custard"
+    ],
+    "es": [
+     "leche",
+     "lacteo",
+     "=nata",
+     "mantequilla",
+     "queso",
+     "yogur",
+     "suero de leche",
+     "lactosuero",
+     "=crema"
+    ],
+    "fr": [
+     "lait",
+     "laitier",
+     "beurre",
+     "fromage",
+     "yaourt",
+     "yogourt",
+     "petit lait",
+     "lactoserum",
+     "=creme"
+    ],
+    "de": [
+     "milch",
+     "sahne",
+     "butter",
+     "kase",
+     "joghurt",
+     "molke",
+     "quark",
+     "=rahm"
+    ],
+    "it": [
+     "latte",
+     "burro",
+     "formaggio",
+     "yogurt",
+     "siero di latte",
+     "latticini",
+     "=panna"
+    ],
+    "pt": [
+     "leite",
+     "manteiga",
+     "queijo",
+     "iogurte",
+     "soro de leite",
+     "=nata",
+     "creme de leite"
+    ],
+    "ja": [
+     "牛乳",
+     "乳成分",
+     "乳製品",
+     "脱脂粉乳",
+     "全粉乳",
+     "生乳",
+     "粉乳",
+     "乳清",
+     "乳たんぱく",
+     "乳タンパク",
+     "バター",
+     "チーズ",
+     "ヨーグルト",
+     "クリーム",
+     "ホエイ"
+    ]
+   },
+   "derivative": {
+    "en": [
+     "casein",
+     "caseinate",
+     "whey",
+     "lactose",
+     "lactalbumin",
+     "lactoglobulin",
+     "lactoferrin",
+     "milk protein",
+     "tagatose",
+     "recaldent"
+    ],
+    "es": [
+     "caseina",
+     "caseinato",
+     "lactosa",
+     "proteinas de la leche"
+    ],
+    "fr": [
+     "caseine",
+     "caseinate",
+     "proteines de lait",
+     "proteines laitieres"
+    ],
+    "de": [
+     "kasein",
+     "laktose",
+     "milcheiweiss",
+     "molkenprotein"
+    ],
+    "it": [
+     "caseina",
+     "lattosio",
+     "proteine del latte",
+     "lattoalbumina"
+    ],
+    "pt": [
+     "caseina",
+     "caseinato",
+     "lactose",
+     "proteinas do leite"
+    ],
+    "ja": [
+     "カゼイン",
+     "乳糖",
+     "ラクトース"
+    ]
+   },
+   "ambiguous": {
+    "en": [
+     "hydrolyzed protein",
+     "hydrolysed protein",
+     "=nougat",
+     "=caramel",
+     "=margarine"
+    ]
+   }
+  },
+  {
+   "id": "lactose",
+   "name": "Lactose (milk sugar)",
+   "inherits": [
+    "milk"
+   ],
+   "direct": {
+    "en": [
+     "lactose"
+    ],
+    "es": [
+     "lactosa"
+    ],
+    "fr": [
+     "lactose"
+    ],
+    "de": [
+     "laktose"
+    ],
+    "it": [
+     "lattosio"
+    ],
+    "pt": [
+     "lactose"
+    ],
+    "ja": [
+     "乳糖",
+     "ラクトース"
+    ]
+   }
+  },
+  {
+   "id": "egg",
+   "name": "Egg",
+   "direct": {
+    "en": [
+     "=egg",
+     "eggwhite",
+     "eggnog",
+     "eggyolk",
+     "=yolk",
+     "=albumen",
+     "=meringue",
+     "=mayonnaise",
+     "=mayo"
+    ],
+    "es": [
+     "huevo",
+     "=clara",
+     "=yema",
+     "=merengue",
+     "mayonesa"
+    ],
+    "fr": [
+     "=oeuf",
+     "=oeufs",
+     "=meringue",
+     "mayonnaise"
+    ],
+    "de": [
+     "=eier",
+     "eigelb",
+     "eiweiss",
+     "eipulver",
+     "vollei",
+     "huhnerei",
+     "mayonnaise"
+    ],
+    "it": [
+     "=uovo",
+     "=uova",
+     "albume",
+     "tuorlo",
+     "maionese",
+     "=meringa"
+    ],
+    "pt": [
+     "=ovo",
+     "=ovos",
+     "=gema",
+     "maionese",
+     "=merengue"
+    ],
+    "ja": [
+     "卵",
+     "鶏卵",
+     "全卵",
+     "卵黄",
+     "卵白",
+     "たまご",
+     "玉子",
+     "マヨネーズ"
+    ]
+   },
+   "derivative": {
+    "en": [
+     "albumin",
+     "ovalbumin",
+     "ovomucoid",
+     "ovomucin",
+     "ovovitellin",
+     "ovoglobulin",
+     "livetin",
+     "lysozyme",
+     "vitellin",
+     "e1105"
+    ],
+    "es": [
+     "albumina",
+     "ovoalbumina",
+     "lisozima"
+    ],
+    "fr": [
+     "albumine",
+     "lysozyme"
+    ],
+    "de": [
+     "lysozym",
+     "albumin"
+    ],
+    "it": [
+     "lisozima",
+     "albumina"
+    ],
+    "pt": [
+     "albumina",
+     "lisozima"
+    ]
+   },
+   "ambiguous": {
+    "en": [
+     "=lecithin",
+     "e322",
+     "=nougat",
+     "=marzipan"
+    ]
+   }
+  },
+  {
+   "id": "peanut",
+   "name": "Peanut",
+   "direct": {
+    "en": [
+     "peanut",
+     "=groundnut",
+     "=goober",
+     "monkey nut",
+     "=arachis",
+     "=mandelona"
+    ],
+    "es": [
+     "cacahuete",
+     "cacahuate",
+     "=mani"
+    ],
+    "fr": [
+     "arachide",
+     "cacahuete"
+    ],
+    "de": [
+     "erdnuss",
+     "erdnusse"
+    ],
+    "it": [
+     "arachidi",
+     "noccioline americane"
+    ],
+    "pt": [
+     "amendoi"
+    ],
+    "ja": [
+     "落花生",
+     "ピーナッツ",
+     "ピーナツ"
+    ]
+   },
+   "derivative": {
+    "en": [
+     "arachis oil",
+     "beer nuts"
+    ]
+   },
+   "ambiguous": {
+    "en": [
+     "=nut",
+     "=nuts",
+     "=satay",
+     "=praline",
+     "=nougat"
+    ]
+   }
+  },
+  {
+   "id": "almond",
+   "name": "Almond",
+   "direct": {
+    "en": [
+     "almond",
+     "marzipan",
+     "frangipane",
+     "=orgeat"
+    ],
+    "es": [
+     "almendra",
+     "mazapan"
+    ],
+    "fr": [
+     "amande",
+     "massepain"
+    ],
+    "de": [
+     "mandel",
+     "marzipan"
+    ],
+    "it": [
+     "mandorl",
+     "marzapane"
+    ],
+    "pt": [
+     "amendoa",
+     "maçapão",
+     "macapao"
+    ],
+    "ja": [
+     "アーモンド",
+     "マジパン"
+    ]
+   },
+   "ambiguous": {
+    "en": [
+     "amaretto",
+     "=nougat",
+     "=praline"
+    ]
+   }
+  },
+  {
+   "id": "walnut",
+   "name": "Walnut",
+   "exclusions": [
+    "noix de cajou",
+    "noix de pecan",
+    "noix de coco",
+    "noix de muscade",
+    "noix du bresil",
+    "noix de macadamia",
+    "nuez moscada",
+    "noce moscata",
+    "noz moscada"
+   ],
+   "direct": {
+    "en": [
+     "walnut"
+    ],
+    "es": [
+     "=nuez",
+     "=nueces"
+    ],
+    "fr": [
+     "=noix"
+    ],
+    "de": [
+     "walnuss",
+     "walnusse"
+    ],
+    "it": [
+     "=noce",
+     "=noci"
+    ],
+    "pt": [
+     "=noz",
+     "=nozes"
+    ],
+    "ja": [
+     "くるみ",
+     "クルミ",
+     "胡桃"
+    ]
+   },
+   "ambiguous": {
+    "en": [
+     "=nougat",
+     "=praline"
+    ]
+   }
+  },
+  {
+   "id": "cashew",
+   "name": "Cashew",
+   "direct": {
+    "en": [
+     "cashew"
+    ],
+    "es": [
+     "anacardo",
+     "nuez de la india"
+    ],
+    "fr": [
+     "noix de cajou",
+     "cajou"
+    ],
+    "de": [
+     "cashew"
+    ],
+    "it": [
+     "anacard"
+    ],
+    "pt": [
+     "=caju",
+     "castanha de caju"
+    ],
+    "ja": [
+     "カシューナッツ",
+     "カシュー"
+    ]
+   }
+  },
+  {
+   "id": "hazelnut",
+   "name": "Hazelnut",
+   "direct": {
+    "en": [
+     "hazelnut",
+     "=filbert",
+     "gianduja",
+     "nutella"
+    ],
+    "es": [
+     "avellana"
+    ],
+    "fr": [
+     "noisette"
+    ],
+    "de": [
+     "haselnuss",
+     "haselnusse"
+    ],
+    "it": [
+     "nocciol"
+    ],
+    "pt": [
+     "avela"
+    ],
+    "ja": [
+     "ヘーゼルナッツ"
+    ]
+   },
+   "ambiguous": {
+    "en": [
+     "=nougat",
+     "=praline"
+    ]
+   }
+  },
+  {
+   "id": "pecan",
+   "name": "Pecan",
+   "direct": {
+    "en": [
+     "pecan"
+    ],
+    "es": [
+     "pacana"
+    ],
+    "fr": [
+     "noix de pecan"
+    ],
+    "de": [
+     "pekannuss",
+     "pekan"
+    ],
+    "it": [
+     "noce pecan"
+    ],
+    "pt": [
+     "pecan"
+    ],
+    "ja": [
+     "ピーカンナッツ",
+     "ペカン"
+    ]
+   }
+  },
+  {
+   "id": "pistachio",
+   "name": "Pistachio",
+   "direct": {
+    "en": [
+     "pistachio"
+    ],
+    "es": [
+     "pistacho"
+    ],
+    "fr": [
+     "pistache"
+    ],
+    "de": [
+     "pistazie"
+    ],
+    "it": [
+     "pistacchi"
+    ],
+    "pt": [
+     "pistacio"
+    ],
+    "ja": [
+     "ピスタチオ"
+    ]
+   }
+  },
+  {
+   "id": "macadamia",
+   "name": "Macadamia",
+   "direct": {
+    "en": [
+     "macadamia"
+    ],
+    "ja": [
+     "マカダミア"
+    ]
+   }
+  },
+  {
+   "id": "brazil_nut",
+   "name": "Brazil nut",
+   "direct": {
+    "en": [
+     "brazil nut"
+    ],
+    "es": [
+     "nuez de brasil"
+    ],
+    "fr": [
+     "noix du bresil"
+    ],
+    "de": [
+     "paranuss",
+     "paranusse"
+    ],
+    "it": [
+     "noce del brasile",
+     "noci del brasile"
+    ],
+    "pt": [
+     "castanha do para",
+     "castanha do brasil"
+    ],
+    "ja": [
+     "ブラジルナッツ"
+    ]
+   }
+  },
+  {
+   "id": "pine_nut",
+   "name": "Pine nut",
+   "direct": {
+    "en": [
+     "pine nut",
+     "=pignoli",
+     "=pinoli",
+     "=pignolia"
+    ],
+    "es": [
+     "=pinon",
+     "=pinones"
+    ],
+    "fr": [
+     "pignon"
+    ],
+    "de": [
+     "pinienkern"
+    ],
+    "it": [
+     "pinoli"
+    ],
+    "pt": [
+     "pinhao",
+     "=pinhoes"
+    ],
+    "ja": [
+     "松の実"
+    ]
+   },
+   "ambiguous": {
+    "en": [
+     "=pesto"
+    ]
+   }
+  },
+  {
+   "id": "tree_nut",
+   "name": "Tree nuts (all)",
+   "inherits": [
+    "almond",
+    "walnut",
+    "cashew",
+    "hazelnut",
+    "pecan",
+    "pistachio",
+    "macadamia",
+    "brazil_nut",
+    "pine_nut"
+   ],
+   "exclusions": [
+    "ピーナッツ",
+    "ピーナツ"
+   ],
+   "direct": {
+    "en": [
+     "tree nut",
+     "=nut",
+     "=nuts"
+    ],
+    "es": [
+     "frutos secos",
+     "frutos de cascara"
+    ],
+    "fr": [
+     "fruits a coque"
+    ],
+    "de": [
+     "schalenfruchte",
+     "baumnuss",
+     "=nusse",
+     "=nuss"
+    ],
+    "it": [
+     "frutta a guscio",
+     "frutta secca"
+    ],
+    "pt": [
+     "frutos de casca rija",
+     "frutos secos"
+    ],
+    "ja": [
+     "ナッツ"
+    ]
+   },
+   "ambiguous": {
+    "en": [
+     "=praline",
+     "=nougat",
+     "=marzipan"
+    ]
+   }
+  },
+  {
+   "id": "coconut",
+   "name": "Coconut",
+   "direct": {
+    "en": [
+     "coconut",
+     "=copra"
+    ],
+    "es": [
+     "=coco"
+    ],
+    "fr": [
+     "noix de coco"
+    ],
+    "de": [
+     "kokos"
+    ],
+    "it": [
+     "=cocco"
+    ],
+    "pt": [
+     "=coco"
+    ],
+    "ja": [
+     "ココナッツ",
+     "ココナツ"
+    ]
+   }
+  },
+  {
+   "id": "wheat",
+   "name": "Wheat",
+   "exclusions": [
+    "buckwheat",
+    "trigo sarraceno",
+    "ble noir",
+    "buchweizen",
+    "grano saraceno",
+    "rice flour",
+    "corn flour",
+    "cornflour",
+    "almond flour",
+    "coconut flour",
+    "tapioca flour",
+    "potato flour",
+    "chickpea flour",
+    "cassava flour",
+    "sorghum flour",
+    "millet flour",
+    "quinoa flour",
+    "amaranth flour",
+    "teff flour",
+    "arrowroot flour",
+    "banana flour",
+    "lentil flour",
+    "pea flour",
+    "soy flour",
+    "peanut flour",
+    "gram flour",
+    "hazelnut flour",
+    "nut flour",
+    "oat flour",
+    "buckwheat flour"
+   ],
+   "direct": {
+    "en": [
+     "wheat"
+    ],
+    "es": [
+     "trigo"
+    ],
+    "fr": [
+     "=ble",
+     "=bles"
+    ],
+    "de": [
+     "weizen"
+    ],
+    "it": [
+     "frumento",
+     "=grano"
+    ],
+    "pt": [
+     "trigo"
+    ],
+    "ja": [
+     "小麦",
+     "小麦粉",
+     "ふすま"
+    ]
+   },
+   "derivative": {
+    "en": [
+     "semolina",
+     "durum",
+     "spelt",
+     "kamut",
+     "farina",
+     "=farro",
+     "einkorn",
+     "emmer",
+     "triticale",
+     "bulgur",
+     "couscous",
+     "seitan",
+     "=graham",
+     "bread crumbs",
+     "breadcrumbs",
+     "=panko",
+     "=orzo"
+    ],
+    "es": [
+     "semola",
+     "espelta",
+     "cuscus"
+    ],
+    "fr": [
+     "semoule",
+     "epeautre",
+     "boulgour"
+    ],
+    "de": [
+     "dinkel",
+     "gries",
+     "hartweizen"
+    ],
+    "it": [
+     "semola",
+     "=farro"
+    ],
+    "pt": [
+     "semola",
+     "espelta"
+    ],
+    "ja": [
+     "セモリナ",
+     "パン粉"
+    ]
+   },
+   "ambiguous": {
+    "en": [
+     "=flour",
+     "=bran",
+     "=bread",
+     "=breading",
+     "=breaded",
+     "=pasta",
+     "=noodles",
+     "=tempura",
+     "soy sauce",
+     "=shoyu",
+     "=teriyaki",
+     "=tamari",
+     "gluten",
+     "hydrolyzed protein",
+     "hydrolysed protein",
+     "hydrolyzed vegetable protein",
+     "hydrolysed vegetable protein",
+     "modified starch",
+     "modified food starch",
+     "food starch"
+    ],
+    "es": [
+     "=harina"
+    ],
+    "fr": [
+     "=farine"
+    ],
+    "de": [
+     "=mehl"
+    ],
+    "it": [
+     "=farina"
+    ],
+    "pt": [
+     "=farinha"
+    ],
+    "ja": [
+     "グルテン"
+    ]
+   }
+  },
+  {
+   "id": "barley",
+   "name": "Barley",
+   "direct": {
+    "en": [
+     "barley"
+    ],
+    "es": [
+     "cebada"
+    ],
+    "fr": [
+     "=orge"
+    ],
+    "de": [
+     "gerste"
+    ],
+    "it": [
+     "=orzo"
+    ],
+    "pt": [
+     "cevada"
+    ],
+    "ja": [
+     "大麦",
+     "麦芽",
+     "はだか麦"
+    ]
+   },
+   "derivative": {
+    "en": [
+     "=malt",
+     "malted",
+     "malt extract"
+    ],
+    "es": [
+     "=malta"
+    ],
+    "fr": [
+     "=malt"
+    ],
+    "de": [
+     "malz"
+    ],
+    "pt": [
+     "=malte"
+    ],
+    "ja": [
+     "麦芽"
+    ]
+   }
+  },
+  {
+   "id": "rye",
+   "name": "Rye",
+   "direct": {
+    "en": [
+     "=rye",
+     "pumpernickel"
+    ],
+    "es": [
+     "centeno"
+    ],
+    "fr": [
+     "seigle"
+    ],
+    "de": [
+     "roggen"
+    ],
+    "it": [
+     "segale"
+    ],
+    "pt": [
+     "centeio"
+    ],
+    "ja": [
+     "ライ麦"
+    ]
+   }
+  },
+  {
+   "id": "gluten",
+   "name": "Gluten (wheat, barley, rye)",
+   "inherits": [
+    "wheat",
+    "barley",
+    "rye"
+   ],
+   "direct": {
+    "en": [
+     "gluten"
+    ],
+    "es": [
+     "gluten"
+    ],
+    "fr": [
+     "gluten"
+    ],
+    "de": [
+     "gluten"
+    ],
+    "it": [
+     "glutine"
+    ],
+    "pt": [
+     "gluten"
+    ],
+    "ja": [
+     "グルテン"
+    ]
+   },
+   "ambiguous": {
+    "en": [
+     "=oat",
+     "=oats",
+     "oatmeal",
+     "brewers yeast"
+    ],
+    "ja": [
+     "麦"
+    ]
+   }
+  },
+  {
+   "id": "soy",
+   "name": "Soy",
+   "direct": {
+    "en": [
+     "=soy",
+     "=soya",
+     "soybean",
+     "soyabean",
+     "soymilk",
+     "edamame",
+     "=tofu",
+     "=tempeh",
+     "=miso",
+     "=natto",
+     "=tamari",
+     "shoyu",
+     "=okara",
+     "=yuba",
+     "glycine max"
+    ],
+    "es": [
+     "soja"
+    ],
+    "fr": [
+     "soja"
+    ],
+    "de": [
+     "soja"
+    ],
+    "it": [
+     "soia"
+    ],
+    "pt": [
+     "soja"
+    ],
+    "ja": [
+     "大豆",
+     "豆乳",
+     "醤油",
+     "味噌",
+     "豆腐",
+     "納豆",
+     "きな粉",
+     "枝豆",
+     "みそ",
+     "しょうゆ"
+    ]
+   },
+   "ambiguous": {
+    "en": [
+     "=lecithin",
+     "e322",
+     "hydrolyzed protein",
+     "hydrolysed protein",
+     "hydrolyzed vegetable protein",
+     "hydrolysed vegetable protein",
+     "vegetable protein",
+     "textured vegetable protein",
+     "=tvp",
+     "=hvp"
+    ],
+    "es": [
+     "=lecitina"
+    ],
+    "fr": [
+     "=lecithine"
+    ],
+    "de": [
+     "lecithin"
+    ],
+    "it": [
+     "=lecitina"
+    ],
+    "pt": [
+     "=lecitina"
+    ]
+   }
+  },
+  {
+   "id": "fish",
+   "name": "Fish",
+   "exclusions": [
+    "shellfish",
+    "crayfish",
+    "crawfish",
+    "jellyfish",
+    "starfish",
+    "tintenfisch"
+   ],
+   "direct": {
+    "en": [
+     "fish",
+     "salmon",
+     "=tuna",
+     "=cod",
+     "haddock",
+     "pollock",
+     "=pollack",
+     "anchov",
+     "sardine",
+     "mackerel",
+     "herring",
+     "trout",
+     "tilapia",
+     "halibut",
+     "=bass",
+     "snapper",
+     "=eel",
+     "=carp",
+     "=perch",
+     "=pike",
+     "mahi",
+     "surimi",
+     "=roe",
+     "caviar",
+     "bonito",
+     "katsuobushi",
+     "isinglass",
+     "nuoc mam"
+    ],
+    "es": [
+     "pescado",
+     "=atun",
+     "bacalao",
+     "salmon",
+     "anchoa",
+     "sardina",
+     "merluza"
+    ],
+    "fr": [
+     "poisson",
+     "=thon",
+     "saumon",
+     "morue",
+     "anchois",
+     "sardine"
+    ],
+    "de": [
+     "fisch",
+     "lachs",
+     "kabeljau",
+     "sardelle",
+     "hering"
+    ],
+    "it": [
+     "pesce",
+     "tonno",
+     "salmone",
+     "acciuga",
+     "merluzzo"
+    ],
+    "pt": [
+     "peixe",
+     "=atum",
+     "bacalhau",
+     "salmao",
+     "anchova"
+    ],
+    "ja": [
+     "魚",
+     "さけ",
+     "鮭",
+     "さば",
+     "鯖",
+     "かつお",
+     "鰹節",
+     "マグロ",
+     "魚醤",
+     "鱈",
+     "いくら",
+     "魚介"
+    ]
+   },
+   "ambiguous": {
+    "en": [
+     "=worcestershire",
+     "omega 3",
+     "=seafood"
+    ]
+   }
+  },
+  {
+   "id": "crustacean",
+   "name": "Crustaceans (shrimp, crab, lobster)",
+   "direct": {
+    "en": [
+     "shrimp",
+     "prawn",
+     "=crab",
+     "lobster",
+     "crayfish",
+     "crawfish",
+     "langoustine",
+     "=krill",
+     "=scampi",
+     "crustacean"
+    ],
+    "es": [
+     "camaron",
+     "gamba",
+     "langosta",
+     "cangrejo",
+     "langostino",
+     "crustace"
+    ],
+    "fr": [
+     "crevette",
+     "=crabe",
+     "homard",
+     "langouste",
+     "ecrevisse",
+     "crustace"
+    ],
+    "de": [
+     "garnele",
+     "krabbe",
+     "=hummer",
+     "krebstier",
+     "langustine",
+     "scampi"
+    ],
+    "it": [
+     "gamber",
+     "granchio",
+     "aragosta",
+     "astice",
+     "scamp",
+     "crostace"
+    ],
+    "pt": [
+     "camarao",
+     "caranguejo",
+     "lagosta",
+     "crustace"
+    ],
+    "ja": [
+     "えび",
+     "エビ",
+     "海老",
+     "かに",
+     "カニ",
+     "蟹",
+     "甲殻類"
+    ]
+   },
+   "ambiguous": {
+    "en": [
+     "=shellfish",
+     "=seafood",
+     "glucosamine",
+     "surimi"
+    ],
+    "ja": [
+     "魚介"
+    ]
+   }
+  },
+  {
+   "id": "mollusc",
+   "name": "Molluscs (oyster, squid, snail)",
+   "exclusions": [
+    "タコス"
+   ],
+   "direct": {
+    "en": [
+     "oyster",
+     "=clam",
+     "mussel",
+     "scallop",
+     "=squid",
+     "calamari",
+     "octopus",
+     "=snail",
+     "escargot",
+     "abalone",
+     "whelk",
+     "=cockle",
+     "cuttlefish",
+     "mollus"
+    ],
+    "es": [
+     "ostra",
+     "almeja",
+     "mejillon",
+     "vieira",
+     "calamar",
+     "pulpo",
+     "=caracol",
+     "molusco"
+    ],
+    "fr": [
+     "huitre",
+     "palourde",
+     "=moule",
+     "=moules",
+     "calamar",
+     "poulpe",
+     "escargot",
+     "mollusque"
+    ],
+    "de": [
+     "auster",
+     "muschel",
+     "tintenfisch",
+     "schnecke",
+     "weichtier",
+     "kalmar"
+    ],
+    "it": [
+     "ostrica",
+     "vongol",
+     "cozza",
+     "capasanta",
+     "calamar",
+     "polpo",
+     "lumaca"
+    ],
+    "pt": [
+     "ostra",
+     "ameijoa",
+     "mexilhao",
+     "=lula",
+     "polvo",
+     "=caracol"
+    ],
+    "ja": [
+     "あわび",
+     "アワビ",
+     "貝",
+     "イカ",
+     "いか",
+     "烏賊",
+     "ホタテ",
+     "帆立",
+     "あさり",
+     "牡蠣",
+     "タコ"
+    ]
+   },
+   "ambiguous": {
+    "en": [
+     "=shellfish",
+     "=seafood"
+    ],
+    "ja": [
+     "魚介"
+    ]
+   }
+  },
+  {
+   "id": "shellfish",
+   "name": "Shellfish (crustaceans and molluscs)",
+   "inherits": [
+    "crustacean",
+    "mollusc"
+   ],
+   "direct": {
+    "en": [
+     "shellfish",
+     "shell fish"
+    ],
+    "es": [
+     "marisco"
+    ],
+    "fr": [
+     "fruits de mer"
+    ],
+    "de": [
+     "meeresfruchte"
+    ],
+    "it": [
+     "frutti di mare"
+    ],
+    "pt": [
+     "marisco",
+     "frutos do mar"
+    ]
+   }
+  },
+  {
+   "id": "sesame",
+   "name": "Sesame",
+   "direct": {
+    "en": [
+     "sesame",
+     "=tahini",
+     "=tahina",
+     "=gingelly",
+     "=benne",
+     "=halva",
+     "=halvah",
+     "=dukkah",
+     "gomasio"
+    ],
+    "es": [
+     "sesamo",
+     "ajonjoli"
+    ],
+    "fr": [
+     "sesame"
+    ],
+    "de": [
+     "sesam",
+     "=tahin"
+    ],
+    "it": [
+     "sesamo"
+    ],
+    "pt": [
+     "gergelim",
+     "sesamo"
+    ],
+    "ja": [
+     "ごま",
+     "ゴマ",
+     "胡麻",
+     "タヒニ"
+    ]
+   },
+   "ambiguous": {
+    "en": [
+     "=hummus",
+     "=hommus",
+     "=zaatar"
+    ]
+   }
+  },
+  {
+   "id": "mustard",
+   "name": "Mustard",
+   "direct": {
+    "en": [
+     "mustard"
+    ],
+    "es": [
+     "mostaza"
+    ],
+    "fr": [
+     "moutarde"
+    ],
+    "de": [
+     "senf"
+    ],
+    "it": [
+     "senape"
+    ],
+    "pt": [
+     "mostarda"
+    ],
+    "ja": [
+     "からし",
+     "辛子",
+     "マスタード"
+    ]
+   }
+  },
+  {
+   "id": "celery",
+   "name": "Celery",
+   "direct": {
+    "en": [
+     "celery",
+     "=celeriac"
+    ],
+    "es": [
+     "=apio"
+    ],
+    "fr": [
+     "celeri"
+    ],
+    "de": [
+     "sellerie"
+    ],
+    "it": [
+     "sedano"
+    ],
+    "pt": [
+     "=aipo"
+    ],
+    "ja": [
+     "セロリ"
+    ]
+   }
+  },
+  {
+   "id": "lupin",
+   "name": "Lupin",
+   "direct": {
+    "en": [
+     "lupin"
+    ],
+    "pt": [
+     "tremoco"
+    ],
+    "ja": [
+     "ルピナス"
+    ]
+   }
+  },
+  {
+   "id": "sulphites",
+   "name": "Sulphites (sulfites)",
+   "direct": {
+    "en": [
+     "sulphite",
+     "sulfite",
+     "sulphur dioxide",
+     "sulfur dioxide",
+     "metabisulphite",
+     "metabisulfite",
+     "bisulphite",
+     "bisulfite",
+     "e220",
+     "e221",
+     "e222",
+     "e223",
+     "e224",
+     "e225",
+     "e226",
+     "e227",
+     "e228"
+    ],
+    "es": [
+     "dioxido de azufre"
+    ],
+    "fr": [
+     "anhydride sulfureux"
+    ],
+    "de": [
+     "schwefeldioxid"
+    ],
+    "it": [
+     "solfit",
+     "anidride solforosa"
+    ],
+    "pt": [
+     "dioxido de enxofre"
+    ],
+    "ja": [
+     "亜硫酸",
+     "二酸化硫黄"
+    ]
+   }
+  },
+  {
+   "id": "buckwheat",
+   "name": "Buckwheat",
+   "direct": {
+    "en": [
+     "buckwheat",
+     "=soba",
+     "=kasha"
+    ],
+    "es": [
+     "alforfon",
+     "trigo sarraceno"
+    ],
+    "fr": [
+     "sarrasin",
+     "ble noir"
+    ],
+    "de": [
+     "buchweizen"
+    ],
+    "it": [
+     "grano saraceno"
+    ],
+    "pt": [
+     "trigo sarraceno"
+    ],
+    "ja": [
+     "そば",
+     "ソバ",
+     "蕎麦"
+    ]
+   }
+  },
+  {
+   "id": "corn",
+   "name": "Corn (maize)",
+   "direct": {
+    "en": [
+     "=corn",
+     "cornstarch",
+     "cornmeal",
+     "cornflour",
+     "popcorn",
+     "=maize",
+     "=masa",
+     "=polenta",
+     "=hominy",
+     "=grits"
+    ],
+    "es": [
+     "=maiz"
+    ],
+    "fr": [
+     "=mais"
+    ],
+    "de": [
+     "=mais",
+     "maisstarke"
+    ],
+    "it": [
+     "=mais",
+     "granturco"
+    ],
+    "pt": [
+     "=milho"
+    ],
+    "ja": [
+     "とうもろこし",
+     "トウモロコシ",
+     "コーン"
+    ]
+   },
+   "ambiguous": {
+    "en": [
+     "dextrose",
+     "maltodextrin",
+     "modified starch",
+     "modified food starch",
+     "food starch",
+     "=tortilla"
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,2613 @@
+{
+ "cases": [
+  {
+   "name": "milk named in list",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "INGREDIENTS: Sugar, Whole Milk, Cocoa Butter, Soy Lecithin."
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "casein derivative",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "derivative"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Water, Sodium Caseinate, Corn Oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "clean read, no matches",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Rice, Water, Salt, Sugar, Vinegar"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "low confidence cannot verify",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "cannotVerify"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Rice, Water, Salt, Sugar, Vinegar"
+     ],
+     "confidence": 0.3
+    }
+   ]
+  },
+  {
+   "name": "no ingredients header cannot verify",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "cannotVerify"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Rice, Water, Salt, Sugar, Vinegar, Pepper"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "too little text cannot verify",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "cannotVerify"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Water"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "blurry capture poisons clean one",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "cannotVerify"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Rice, Water, Salt, Sugar, Vinegar"
+     ],
+     "confidence": 0.95
+    },
+    {
+     "lines": [
+      "Rice, Water, Salt, Sugar, Vinegar, Pepper, Garlic"
+     ],
+     "confidence": 0.2
+    }
+   ]
+  },
+  {
+   "name": "panel without header plus panel with header is reliable",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Nutrition Facts",
+      "Serving size 1 cup",
+      "Calories 120"
+     ],
+     "confidence": 0.95
+    },
+    {
+     "lines": [
+      "Ingredients: Rice, Water, Salt, Sugar, Vinegar"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "match found on a good second panel",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Nutrition Facts",
+      "Serving size 1 cup",
+      "Calories 120",
+      "Total Fat 3 g"
+     ],
+     "confidence": 0.95
+    },
+    {
+     "lines": [
+      "Ingredients: Rice, Water, Whole Milk, Sugar"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "verdicts are per profile on a bad read",
+   "profiles": [
+    {
+     "name": "Mild",
+     "entries": [
+      [
+       "milk",
+       "mild"
+      ]
+     ]
+    },
+    {
+     "name": "Severe",
+     "entries": [
+      [
+       "peanut",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "Mild": {
+     "verdict": "match:caution",
+     "mayBeMore": true
+    },
+    "Severe": {
+     "verdict": "cannotVerify"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Sugar, Whole Milk, Water, Salt, Vinegar, Pepper"
+     ],
+     "confidence": 0.3
+    }
+   ]
+  },
+  {
+   "name": "advisory severe stays critical",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "peanut",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "peanut": "advisory"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Oats, Sugar. May contain traces of peanuts."
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "advisory moderate is caution",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "peanut",
+       "moderate"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:caution",
+     "entries": {
+      "peanut": "advisory"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Oats, Sugar. May contain traces of peanuts."
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "strict advisory moderate is warning",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "peanut",
+       "moderate",
+       "strict"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:warning",
+     "entries": {
+      "peanut": "advisory"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Oats, Sugar. May contain traces of peanuts."
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "advisory mild is notice",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "peanut",
+       "mild"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:notice",
+     "entries": {
+      "peanut": "advisory"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Oats, Sugar. May contain traces of peanuts."
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "facility statement",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "advisory"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Sugar, Salt, Water",
+      "Made in a facility that also processes peanuts, tree nuts, milk and wheat."
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "direct before may contain stays direct",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Milk, sugar. May contain peanuts."
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "may contain without period",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "soy",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "soy": "advisory"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Sugar, Salt. Contains milk may contain soy"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "contains statement ends advisory scope",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: sugar. MAY CONTAIN TREE NUTS CONTAINS: MILK"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "tree nuts advisory in same line",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "tree_nut",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "tree_nut": "advisory"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: sugar. MAY CONTAIN TREE NUTS CONTAINS: MILK"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "ambiguous flour for wheat",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "wheat",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "wheat": "ambiguous"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Enriched flour, sugar, salt, yeast"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "ambiguous mild is notice",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "wheat",
+       "mild"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:notice",
+     "entries": {
+      "wheat": "ambiguous"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Enriched flour, sugar, salt, yeast"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "dairy free claim is a notice only",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:notice",
+     "entries": {
+      "milk": "freeClaim"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Rice, Sugar, Salt, Water. Dairy-free. Gluten free."
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "lactose-free milk still milk",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Lactose-free milk, vitamin D, water"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "fat free milk still milk",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Fat free milk powder, sugar, salt, water"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "dairy-free whitener with caseinate",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "derivative"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Dairy-free whitener. Water, sodium caseinate, oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "free from list",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "egg",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:notice",
+     "entries": {
+      "egg": "freeClaim"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Water, Salt, Sugar, Rice. Free from milk, egg and soy."
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "free from list does not hide an ingredient",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "soy",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "soy": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Sugar, soy lecithin, water, salt. Free from milk and egg."
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "nut free claim",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "tree_nut",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:notice",
+     "entries": {
+      "tree_nut": "freeClaim"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Rice, sugar, water, salt, oil. Nut free."
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "spanish sin gluten",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "gluten",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:notice",
+     "entries": {
+      "gluten": "freeClaim"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredientes: arroz, agua, sal, azúcar, aceite. Sin gluten."
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "without list stops at digits",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Water, salt, sugar. Made without 2 milk"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "buttermilk compound",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Flour, Buttermilk, salt, sugar"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "digit one for letter i",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Sugar, m1lk, salt, water, oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "digit one for letter l",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Sugar, mi1k powder, salt, water, oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "zero for o in wheat",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "wheat",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "wheat": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Sugar, wheat fl0ur, salt, water, oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "run together peanutbutter",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "peanut",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "peanut": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Sugar, peanutbutter, salt, water, oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "fuzzy peanut misread",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "peanut",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "peanut": "direct"
+     },
+     "fuzzy": [
+      "peanut"
+     ]
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Sugar, peanuf, salt, water, oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "hyphenated line wrap",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "peanut",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "peanut": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Sugar, pea-",
+      "nut flour, salt, water"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "plural uppercase",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "peanut",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "peanut": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "INGREDIENTS: SUGAR, PEANUTS, SALT, WATER"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "hyphen tree-nuts",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "tree_nut",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "tree_nut": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: sugar, tree-nuts, water, salt"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "e-number with space",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "sulphites",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "sulphites": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Dried apricots, E 220, sugar, water"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "e-number with hyphen",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "sulphites",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "sulphites": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Dried apricots, E-220, sugar, water"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "eggplant is not egg",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "egg",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Eggplant, tomato, olive oil, garlic, salt"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "veggie is not egg",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "egg",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Veggie burger, onion, water, salt, oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "nutrition facts is not a nut",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "tree_nut",
+       "mild"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Nutrition Facts",
+      "Ingredients: Rice, water, salt, vinegar, sugar"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "boat coat goat are not oat",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "gluten",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Rice, cocoa, coated sugar, water, salt, boat"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "oats for gluten",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "gluten",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "gluten": "ambiguous"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Rice, oats, water, salt, sugar"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "cocoa butter is not milk",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Sugar, cocoa butter, cocoa mass, vanilla, salt"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "coconut milk is not milk",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Coconut milk, water, guar gum, salt, sugar"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "coconut milk is coconut",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "coconut",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "coconut": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Coconut milk, water, guar gum, salt, sugar"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "buckwheat flour is not wheat",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "wheat",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Buckwheat flour, water, salt, oil, sugar"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "buckwheat flour is buckwheat",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "buckwheat",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "buckwheat": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Buckwheat flour, water, salt, oil, sugar"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "rice flour is not wheat",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "wheat",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Rice flour, water, salt, oil, sugar"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "shellfish is not fish",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "fish",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Shellfish extract, salt, water, sugar, oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "shellfish for crustacean",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "crustacean",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "crustacean": "ambiguous"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Shellfish extract, salt, water, sugar, oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "peppercorn is not corn",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "corn",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Water, salt, peppercorn, sugar, oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "maltodextrin is not malt",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "barley",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Water, salt, maltodextrin, sugar, oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "cream of tartar is not milk",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Flour, sugar, cream of tartar, baking soda"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "tree nut group matches cashew",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "tree_nut",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "tree_nut": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Sugar, Cashews, Palm Oil, salt"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "walnut entry ignores cashew",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "walnut",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Sugar, Cashews, Palm Oil, salt"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "shellfish group matches shrimp",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "shellfish",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "shellfish": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Shrimp, water, salt, sugar, oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "mollusc entry ignores shrimp",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "mollusc",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Shrimp, water, salt, sugar, oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "gluten includes wheat",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "gluten",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "gluten": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Wheat starch, water, salt, sugar"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "gluten includes barley malt",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "gluten",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "gluten": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Barley malt, water, salt, sugar"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "milk entry matches lactose on the label",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "derivative"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Sugar, lactose, salt, water, oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "lactose intolerance matches milk",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "lactose",
+       "intolerance"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:caution",
+     "entries": {
+      "lactose": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Water, milk, sugar, salt, vanilla"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "lactose intolerance matches whey",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "lactose",
+       "intolerance"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:caution",
+     "entries": {
+      "lactose": "derivative"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Water, whey protein, sugar, salt, vanilla"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "lactose intolerance matches cheese",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "lactose",
+       "intolerance"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:caution",
+     "entries": {
+      "lactose": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Flour, cheese, sugar, salt, yeast"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "lactose intolerance cross-contact is notice",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "lactose",
+       "intolerance"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:notice",
+     "entries": {
+      "lactose": "advisory"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Flour, sugar, salt, yeast. May contain milk."
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "custom entry",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "custom:kiwi",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "custom:kiwi": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Kiwi, apple, water, sugar, oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "custom entry no match",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "custom:kiwi",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Apple, pear, water, sugar, oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "german label",
+   "profiles": [
+    {
+     "name": "W",
+     "entries": [
+      [
+       "wheat",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "H",
+     "entries": [
+      [
+       "hazelnut",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "M",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "E",
+     "entries": [
+      [
+       "egg",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "W": {
+     "verdict": "match:critical",
+     "entries": {
+      "wheat": "direct"
+     }
+    },
+    "H": {
+     "verdict": "match:critical",
+     "entries": {
+      "hazelnut": "direct"
+     }
+    },
+    "M": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "direct"
+     }
+    },
+    "E": {
+     "verdict": "match:critical",
+     "entries": {
+      "egg": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Zutaten: Weizenmehl, Zucker, Haselnüsse, Magermilchpulver, Eier."
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "french label",
+   "profiles": [
+    {
+     "name": "M",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "E",
+     "entries": [
+      [
+       "egg",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "H",
+     "entries": [
+      [
+       "hazelnut",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "S",
+     "entries": [
+      [
+       "soy",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "M": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "direct"
+     }
+    },
+    "E": {
+     "verdict": "match:critical",
+     "entries": {
+      "egg": "direct"
+     }
+    },
+    "H": {
+     "verdict": "match:critical",
+     "entries": {
+      "hazelnut": "direct"
+     }
+    },
+    "S": {
+     "verdict": "match:critical",
+     "entries": {
+      "soy": "advisory"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingrédients : sucre, lait écrémé en poudre, œufs, noisettes. Peut contenir des traces de soja."
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "spanish label",
+   "profiles": [
+    {
+     "name": "W",
+     "entries": [
+      [
+       "wheat",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "M",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "E",
+     "entries": [
+      [
+       "egg",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "N",
+     "entries": [
+      [
+       "tree_nut",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "S",
+     "entries": [
+      [
+       "soy",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "W": {
+     "verdict": "match:critical",
+     "entries": {
+      "wheat": "direct"
+     }
+    },
+    "M": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "direct"
+     }
+    },
+    "E": {
+     "verdict": "match:critical",
+     "entries": {
+      "egg": "direct"
+     }
+    },
+    "N": {
+     "verdict": "match:critical",
+     "entries": {
+      "tree_nut": "advisory"
+     }
+    },
+    "S": {
+     "verdict": "match:critical",
+     "entries": {
+      "soy": "advisory"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredientes: harina de trigo, azúcar, leche, huevo.",
+      "Puede contener trazas de frutos secos y soja."
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "italian label",
+   "profiles": [
+    {
+     "name": "W",
+     "entries": [
+      [
+       "wheat",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "M",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "E",
+     "entries": [
+      [
+       "egg",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "H",
+     "entries": [
+      [
+       "hazelnut",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "W": {
+     "verdict": "match:critical",
+     "entries": {
+      "wheat": "direct"
+     }
+    },
+    "M": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "direct"
+     }
+    },
+    "E": {
+     "verdict": "match:critical",
+     "entries": {
+      "egg": "direct"
+     }
+    },
+    "H": {
+     "verdict": "match:critical",
+     "entries": {
+      "hazelnut": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredienti: farina di frumento, burro, uova, nocciole, zucchero"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "japanese label",
+   "profiles": [
+    {
+     "name": "W",
+     "entries": [
+      [
+       "wheat",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "E",
+     "entries": [
+      [
+       "egg",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "M",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "S",
+     "entries": [
+      [
+       "soy",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "F",
+     "entries": [
+      [
+       "fish",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "W": {
+     "verdict": "match:critical",
+     "entries": {
+      "wheat": "direct"
+     }
+    },
+    "E": {
+     "verdict": "match:critical",
+     "entries": {
+      "egg": "direct"
+     }
+    },
+    "M": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "direct"
+     }
+    },
+    "S": {
+     "verdict": "match:critical",
+     "entries": {
+      "soy": "direct"
+     }
+    },
+    "F": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "原材料名：小麦粉、砂糖、卵、乳成分、大豆（一部に小麦・卵・乳成分・大豆を含む）"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "bilingual canadian label",
+   "profiles": [
+    {
+     "name": "M",
+     "entries": [
+      [
+       "milk",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "P",
+     "entries": [
+      [
+       "peanut",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "M": {
+     "verdict": "match:critical",
+     "entries": {
+      "milk": "direct"
+     }
+    },
+    "P": {
+     "verdict": "match:critical",
+     "entries": {
+      "peanut": "direct"
+     }
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "INGREDIENTS: SUGAR, MILK, PEANUTS. INGRÉDIENTS: SUCRE, LAIT, ARACHIDES."
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "profiles ordered worst first",
+   "profiles": [
+    {
+     "name": "Zed",
+     "entries": [
+      [
+       "milk",
+       "mild"
+      ]
+     ]
+    },
+    {
+     "name": "Amy",
+     "entries": [
+      [
+       "peanut",
+       "severe"
+      ]
+     ]
+    },
+    {
+     "name": "Bob",
+     "entries": [
+      [
+       "fish",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "Amy": {
+     "verdict": "match:critical"
+    },
+    "Zed": {
+     "verdict": "match:caution"
+    },
+    "Bob": {
+     "verdict": "noMatches"
+    }
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Sugar, Milk, Peanuts, Water, Salt"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  },
+  {
+   "name": "spices produce a note",
+   "profiles": [
+    {
+     "name": "A",
+     "entries": [
+      [
+       "celery",
+       "severe"
+      ]
+     ]
+    }
+   ],
+   "expect": {
+    "A": {
+     "verdict": "match:critical",
+     "entries": {
+      "celery": "direct"
+     }
+    },
+    "_notes": [
+     "spices"
+    ]
+   },
+   "captures": [
+    {
+     "lines": [
+      "Ingredients: Salt, celery salt, pepper, spices, water, oil"
+     ],
+     "confidence": 0.95
+    }
+   ]
+  }
+ ]
+}
