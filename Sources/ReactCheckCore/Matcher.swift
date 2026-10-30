@@ -130,6 +130,12 @@ public struct AllergenMatcher: Sendable {
         return ScanResult(profiles: results, readQuality: quality, notes: notes)
     }
 
+    /// Why one capture may be unreliable, for immediate "retake" feedback.
+    /// A missing ingredients header is not reported: panels without a list are normal.
+    public func readIssues(for capture: Capture) -> Set<ReadIssue> {
+        Quality.assess(capture, config: config, hasHeader: hasHeader).issues
+    }
+
     public func check(texts: [String], profiles: [Profile], confidence: Float = 1) -> ScanResult {
         check(captures: [Capture(texts: texts, confidence: confidence)], profiles: profiles)
     }

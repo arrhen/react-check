@@ -3,6 +3,15 @@ import ReactCheckCore
 import SwiftUI
 import VisionKit
 
+/// One photo with its OCR already done, so a bad one can be flagged and retaken straight away.
+struct Shot: Identifiable {
+    let id = UUID()
+    let image: UIImage
+    let capture: Capture
+    let issues: Set<ReadIssue>
+    var isClear: Bool { issues.isEmpty }
+}
+
 struct ResultBox: Identifiable {
     let id = UUID()
     let result: ScanResult
@@ -10,9 +19,10 @@ struct ResultBox: Identifiable {
 
 struct ScanView: View {
     @Environment(ProfileStore.self) private var store
-    @State private var images: [UIImage] = []
+    @State private var shots: [Shot] = []
     @State private var excluded: Set<UUID> = []
     @State private var showCamera = false
+    @State private var showDocumentScanner = false
     @State private var pickerItems: [PhotosPickerItem] = []
     @State private var working = false
     @State private var box: ResultBox?
@@ -42,8 +52,10 @@ struct ScanView: View {
                     }
                 }
                 Section {
-                    if DocumentScanner.isSupported {
+                    if LiveCamera.isAvailable {
                         Button { showCamera = true } label: { Label("Scan with camera", systemImage: "camera.viewfinder") }
+                    } else if DocumentScanner.isSupported {
+                        Button { showDocumentScanner = true } label: { Label("Scan with camera", systemImage: "camera.viewfinder") }
                     }
                     PhotosPicker(selection: $pickerItems, maxSelectionCount: 8, matching: .images) {
                         Label("Choose photos", systemImage: "photo.on.rectangle")
@@ -56,18 +68,19 @@ struct ScanView: View {
                 } footer: {
                     Text("Scan every part of the pack that has writing: the ingredients list, any \"contains\" or \"may contain\" line, and stickers. Hold steady, avoid glare.")
                 }
-                if !images.isEmpty {
-                    Section("\(images.count) \(images.count == 1 ? "photo" : "photos") ready") {
+                if !shots.isEmpty {
+                    Section("\(shots.count) \(shots.count == 1 ? "photo" : "photos") ready") {
                         ScrollView(.horizontal) {
-                            HStack {
-                                ForEach(Array(images.enumerated()), id: \.offset) { _, img in
-                                    Image(uiImage: img).resizable().scaledToFill()
-                                        .frame(width: 80, height: 100).clipShape(RoundedRectangle(cornerRadius: 8))
-                                        .accessibilityHidden(true)
-                                }
+                            HStack(spacing: 12) {
+                                ForEach(shots) { shot in ShotThumb(shot: shot) { shots.removeAll { $0.id == shot.id } } }
                             }
+                            .padding(.vertical, 4)
                         }
-                        Button("Clear photos", role: .destructive) { images = [] }
+                        if shots.contains(where: { !$0.isClear }) {
+                            Label("Some photos are unclear. Remove them and retake, or the result may say it couldn't read the label.",
+                                  systemImage: "exclamationmark.triangle").font(.footnote)
+                        }
+                        Button("Clear all photos", role: .destructive) { shots = [] }
                     }
                     Section {
                         Button {
@@ -83,8 +96,14 @@ struct ScanView: View {
                 }
             }
             .navigationTitle("React Check")
-            .sheet(isPresented: $showCamera) {
-                DocumentScanner { images += $0; showCamera = false } onCancel: { showCamera = false }
+            .fullScreenCover(isPresented: $showCamera) {
+                LiveScannerView(onPhoto: { image in await add(image) }, onDone: { showCamera = false }, count: shots.count)
+            }
+            .sheet(isPresented: $showDocumentScanner) {
+                DocumentScanner { images in
+                    showDocumentScanner = false
+                    Task { for image in images { _ = await add(image) } }
+                } onCancel: { showDocumentScanner = false }
                     .ignoresSafeArea()
             }
             .sheet(item: $box) { ResultView(result: $0.result) }
@@ -93,12 +112,23 @@ struct ScanView: View {
     }
 
     private func load(_ items: [PhotosPickerItem]) async {
-        var loaded: [UIImage] = []
         for item in items {
-            if let data = try? await item.loadTransferable(type: Data.self), let img = UIImage(data: data) { loaded.append(img) }
+            if let data = try? await item.loadTransferable(type: Data.self), let img = UIImage(data: data) { _ = await add(img) }
         }
-        images += loaded
         pickerItems = []
+    }
+
+    /// Reads a photo right away and returns a short status for the camera view.
+    private func add(_ image: UIImage) async -> String {
+        guard let matcher else { return "Scanning is unavailable." }
+        do {
+            let capture = try await OCR.capture(from: image, vocabulary: matcher.ocrVocabulary)
+            let shot = Shot(image: image, capture: capture, issues: matcher.readIssues(for: capture))
+            shots.append(shot)
+            return shot.isClear ? "Clear. Take more, or tap Done." : "Unclear. Hold steady and retake."
+        } catch {
+            return "Couldn't read that photo. Try again."
+        }
     }
 
     private func check() async {
@@ -106,14 +136,7 @@ struct ScanView: View {
         working = true
         errorMessage = nil
         defer { working = false }
-        do {
-            var captures: [Capture] = []
-            for image in images { captures.append(try await OCR.capture(from: image, vocabulary: matcher.ocrVocabulary)) }
-            box = ResultBox(result: matcher.check(captures: captures, profiles: chosen))
-        } catch {
-            // Fail safe: a failed read is never shown as a result.
-            errorMessage = "Couldn't read the photos. Please check the label yourself."
-        }
+        box = ResultBox(result: matcher.check(captures: shots.map(\.capture), profiles: chosen))
     }
 
     #if DEBUG
@@ -124,4 +147,26 @@ struct ScanView: View {
             profiles: chosen, confidence: 0.95))
     }
     #endif
+}
+
+struct ShotThumb: View {
+    let shot: Shot
+    var onRemove: () -> Void
+
+    var body: some View {
+        ZStack(alignment: .topTrailing) {
+            Image(uiImage: shot.image).resizable().scaledToFill()
+                .frame(width: 80, height: 100).clipShape(RoundedRectangle(cornerRadius: 8))
+                .overlay(alignment: .bottomLeading) {
+                    Image(systemName: shot.isClear ? "text.viewfinder" : "exclamationmark.triangle.fill")
+                        .font(.caption).padding(4)
+                        .background(shot.isClear ? Color.teal : Color.orange, in: Circle())
+                        .foregroundStyle(.white).padding(4)
+                }
+                .accessibilityLabel(shot.isClear ? "Photo, text found" : "Photo, unclear")
+            Button(action: onRemove) { Image(systemName: "xmark.circle.fill").foregroundStyle(.white, .black.opacity(0.6)) }
+                .accessibilityLabel("Remove photo")
+                .padding(2)
+        }
+    }
 }
