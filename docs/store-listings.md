@@ -1,8 +1,9 @@
 # App Store listing copy (draft)
 
-**Name:** React Check
+**Name:** React Check: Label Reader ("React Check" was taken; the on-device name stays React Check)
+**App Store Connect:** app ID 6828978711, bundle me.arrhen.ReactCheck, SKU reactcheck1
 **Subtitle (30 chars):** A second look at food labels
-**Category:** Health & Fitness (secondary: Food & Drink)
+**Category:** Food & Drink (secondary: Health & Fitness)
 **Age rating:** 4+ (no objectionable content)
 **Price:** Free, no in-app purchases
 **Devices:** iPhone only (v1)
